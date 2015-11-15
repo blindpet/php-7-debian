@@ -21,7 +21,7 @@ sudo apt-get install -y \
     libpspell-dev \
     libreadline-dev
 
-sudo mkdir /usr/local/php7
+sudo mkdir /usr/bin/php7
 
 git clone https://github.com/php/php-src.git
 cd php-src
@@ -29,8 +29,8 @@ git checkout PHP-7.0.0
 git pull
 ./buildconf --force
 
-CONFIGURE_STRING="--prefix=/usr/local/php7 \
-                  --with-config-file-scan-dir=/usr/local/php7/etc/conf.d \
+CONFIGURE_STRING="--prefix=/usr/bin/php7 \
+                  --with-config-file-scan-dir=/usr/bin/php7/etc/conf.d \
                   --enable-bcmath \
                   --with-bz2 \
                   --enable-calendar \
@@ -69,5 +69,5 @@ CONFIGURE_STRING="--prefix=/usr/local/php7 \
 
 ./configure $CONFIGURE_STRING
 
-make
+make -j$(nproc)
 sudo make install
